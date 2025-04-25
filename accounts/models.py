@@ -25,7 +25,7 @@ class Account(models.Model):
 
 
 class Deposit(models.Model):
-    colect_id=models.ForeignKey(
+    collect_id=models.ForeignKey(
         Collect,
         on_delete=models.PROTECT,
         related_name='Deposit',

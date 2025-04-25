@@ -8,7 +8,7 @@ from core.permissions import IsAccountOwner
 class AccountViewSet(viewsets.ModelViewSet):
     queryset=Account.objects.all()
     serializer_class=AccountSerializer
-    permission_classes=DjangoModelPermissions
+    permission_classes=[DjangoModelPermissions]
 
 
 class DepositViewSet(viewsets.ModelViewSet):

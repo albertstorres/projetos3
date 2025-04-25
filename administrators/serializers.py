@@ -1,6 +1,6 @@
 from administrators.models import Administrator
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 
 class AdministratorSerializer(serializers.ModelSerializer):
@@ -21,6 +21,12 @@ class AdministratorSerializer(serializers.ModelSerializer):
             password=password,
             is_staff=True
         )
+
+        try:
+            administradores_group = Group.objects.get(name='Administradores')
+            user.groups.add(administradores_group)
+        except Group.DoesNotExist:
+            raise serializers.ValidationError("Grupo não encontrado.")
 
         administrator = Administrator.objects.create(user=user, **validated_data)
 

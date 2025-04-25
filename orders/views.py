@@ -22,4 +22,4 @@ class OrderViewSet(viewsets.ModelViewSet):
 class OrderProductsViewSet(viewsets.ModelViewSet):
     queryset=OrderProducts.objects.all()
     serializer_class=OrderProductsSerializer
-    permission_classes=DjangoModelPermissions
+    permission_classes=[DjangoModelPermissions]

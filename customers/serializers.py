@@ -1,6 +1,6 @@
 from customers.models import Customer
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -21,6 +21,12 @@ class CustomerSerializer(serializers.ModelSerializer):
             password=password
         )
 
+        try:
+            clientes_group = Group.objects.get(name='Clientes')
+            user.groups.add(clientes_group)
+        except Group.DoesNotExist:
+            raise serializers.ValidationError("Grupo não encontrado.")
+        
         customer = Customer.objects.create(user=user, **validated_data)
 
         return customer

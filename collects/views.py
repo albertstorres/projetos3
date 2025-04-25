@@ -7,7 +7,7 @@ from collects.serializers import AddressSerializer, CategorieSerializer, Collect
 class AddressViewSet(viewsets.ModelViewSet):
     queryset=Address.objects.all()
     serializer_class=AddressSerializer
-    permission_classes=DjangoModelPermissions
+    permission_classes=[DjangoModelPermissions]
 
 
 class CategorieViewSet(viewsets.ModelViewSet):
@@ -19,4 +19,4 @@ class CategorieViewSet(viewsets.ModelViewSet):
 class CollectViewSet(viewsets.ModelViewSet):
     queryset=Collect.objects.all()
     serializer_class=CollectSerializer
-    permission_classes=DjangoModelPermissions
+    permission_classes=[DjangoModelPermissions]
