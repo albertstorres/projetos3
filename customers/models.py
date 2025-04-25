@@ -1,15 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Customer(models.Model):
-    user=models.OneToOneField(
-        User,
-        on_delete=models.PROTECT,
-        blank=True,
-        null=True,
-        related_name='customers',
-        verbose_name='Cliente',
+    username=models.CharField(
+        max_length=50,
+        unique=True,
+        default='client',
+        verbose_name='Login',
     )
     first_name=models.CharField(
         max_length=50, 
@@ -25,6 +22,10 @@ class Customer(models.Model):
         db_index=True,
         verbose_name='E-mail',
     )
+    is_staff=models.BooleanField(
+        default=False,
+        verbose_name='Privilégio',
+    )
 
 
     class Meta:
@@ -33,3 +34,4 @@ class Customer(models.Model):
     
     def __str__(self):
         return self.first_name
+    

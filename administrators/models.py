@@ -1,15 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Administrator(models.Model):
-    user=models.OneToOneField(
-        User,
-        on_delete=models.PROTECT,
-        blank=True,
-        null=True,
-        related_name='administrators',
-        verbose_name='Administrador',
+    username=models.CharField(
+        max_length=50,
+        unique=True,
+        default='admin',
+        verbose_name='Login',
     )
     first_name=models.CharField(
         max_length=50,
@@ -24,6 +21,10 @@ class Administrator(models.Model):
         unique=True,
         db_index=True,
         verbose_name='E-mail', 
+    )
+    is_staff=models.BooleanField(
+        default=True,
+        verbose_name='Privilégio',
     )
 
 
