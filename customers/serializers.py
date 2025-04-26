@@ -4,13 +4,13 @@ from django.contrib.auth.models import User, Group
 
 
 class CustomerSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(write_only=True)
-    password = serializers.CharField(write_only=True)
+    username = serializers.CharField(write_only = True)
+    password = serializers.CharField(write_only = True)
     
     
     class Meta:
-        model=Customer
-        fields=['username', 'password', 'first_name', 'last_name', 'email']
+        model = Customer
+        fields = ['username', 'password', 'first_name', 'last_name', 'email']
     
     def create(self, validated_data):
         username = validated_data.pop('username')
@@ -22,11 +22,11 @@ class CustomerSerializer(serializers.ModelSerializer):
         )
 
         try:
-            clientes_group = Group.objects.get(name='Clientes')
+            clientes_group = Group.objects.get(name = 'Clientes')
             user.groups.add(clientes_group)
         except Group.DoesNotExist:
             raise serializers.ValidationError("Grupo não encontrado.")
         
-        customer = Customer.objects.create(user=user, **validated_data)
+        customer = Customer.objects.create(user = user, **validated_data)
 
         return customer

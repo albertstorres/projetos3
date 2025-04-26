@@ -5,6 +5,6 @@ from administrators.serializers import AdministratorSerializer
 
 
 class AdministratorViewSet(viewsets.ModelViewSet):
-    queryset=Administrator.objects.all()
-    serializer_class=AdministratorSerializer
-    permission_classes=[DjangoModelPermissions, IsAdminUser]
+    queryset = Administrator.objects.all()
+    serializer_class = AdministratorSerializer
+    permission_classes = [DjangoModelPermissions, IsAdminUser]

@@ -6,6 +6,6 @@ router = DefaultRouter()
 
 router.register('customers', CustomerViewSet)
 
-urlpatterns=[
+urlpatterns = [
     path('', include(router.urls)),
 ]

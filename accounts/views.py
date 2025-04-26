@@ -6,14 +6,14 @@ from core.permissions import IsAccountOwner
 
 
 class AccountViewSet(viewsets.ModelViewSet):
-    queryset=Account.objects.all()
-    serializer_class=AccountSerializer
-    permission_classes=[DjangoModelPermissions]
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+    permission_classes = [DjangoModelPermissions]
 
 
 class DepositViewSet(viewsets.ModelViewSet):
-    queryset=Deposit.objects.all()
-    serializer_class=[DepositSerializer, IsAccountOwner]
+    queryset = Deposit.objects.all()
+    serializer_class = [DepositSerializer, IsAccountOwner]
 
     def get_queryset(self):
         user = self.request.user

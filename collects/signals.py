@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from collects.models import Collect, Categorie
 from accounts.models import Deposit
 
-@receiver(post_save, sender=Collect)
+@receiver(post_save, sender = Collect)
 def creat_deposit(sender, instance, created, **kwargs):
     if created:
         try:

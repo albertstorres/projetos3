@@ -3,33 +3,33 @@ from django.contrib.auth.models import User
 
 
 class Customer(models.Model):
-    user=models.OneToOneField(
+    user = models.OneToOneField(
         User,
-        on_delete=models.PROTECT,
-        blank=True,
-        null=True,
-        related_name='customers',
-        verbose_name='Cliente',
+        on_delete = models.PROTECT,
+        blank = True,
+        null = True,
+        related_name = 'customers',
+        verbose_name = 'Cliente',
     )
-    first_name=models.CharField(
-        max_length=50, 
-        verbose_name='Primeiro nome'
+    first_name = models.CharField(
+        max_length = 50, 
+        verbose_name = 'Primeiro nome'
         )
-    last_name=models.CharField(
-        max_length=50, 
-        verbose_name='Sobrenome'
+    last_name = models.CharField(
+        max_length = 50, 
+        verbose_name = 'Sobrenome'
         )
-    email=models.EmailField(
-        max_length=100,
-        unique=True,
-        db_index=True,
-        verbose_name='E-mail',
+    email = models.EmailField(
+        max_length = 100,
+        unique = True,
+        db_index = True,
+        verbose_name = 'E-mail',
     )
 
 
     class Meta:
-        verbose_name='Cliente'
-        verbose_name_plural='Clientes'
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Clientes'
     
     def __str__(self):
         return self.first_name

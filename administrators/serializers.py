@@ -17,9 +17,9 @@ class AdministratorSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password')
 
         user = User.objects.create_user(
-            username=username,
-            password=password,
-            is_staff=True
+            username = username,
+            password = password,
+            is_staff = True
         )
 
         try:

@@ -5,18 +5,18 @@ from collects.serializers import AddressSerializer, CategorieSerializer, Collect
 
 
 class AddressViewSet(viewsets.ModelViewSet):
-    queryset=Address.objects.all()
-    serializer_class=AddressSerializer
-    permission_classes=[DjangoModelPermissions]
+    queryset = Address.objects.all()
+    serializer_class = AddressSerializer
+    permission_classes = [DjangoModelPermissions]
 
 
 class CategorieViewSet(viewsets.ModelViewSet):
-    queryset=Categorie.objects.all()
-    serializer_class=CategorieSerializer
-    permission_classes=[DjangoModelPermissions, IsAdminUser]
+    queryset = Categorie.objects.all()
+    serializer_class = CategorieSerializer
+    permission_classes = [DjangoModelPermissions, IsAdminUser]
 
 
 class CollectViewSet(viewsets.ModelViewSet):
-    queryset=Collect.objects.all()
-    serializer_class=CollectSerializer
-    permission_classes=[DjangoModelPermissions]
+    queryset = Collect.objects.all()
+    serializer_class = CollectSerializer
+    permission_classes = [DjangoModelPermissions]
