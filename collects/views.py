@@ -4,6 +4,7 @@ from core.permissions import IsAccountOwner
 from collects.models import Address, Categorie, Collect
 from collects.serializers import AddressSerializer, CategorieSerializer, CollectSerializer
 from collects.filters import AddressFilterClass, CategorieFilterClass, CollectFilterClass
+from customers.models import Customer 
 
 
 class AddressViewSet(viewsets.ModelViewSet):
@@ -14,9 +15,16 @@ class AddressViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-
         if user.is_staff:
             return Address.objects.all()
+        
+        customer = Customer.objects.filter(user=user).first()
+        if not customer:
+            return Address.objects.none()
+        
+        customer_addres = Address.objects.filter(customer_id=customer)
+        if not customer_addres:
+            return Address.objects.none()
 
         return Address.objects.filter(customer_id__user = user)
 
@@ -36,8 +44,16 @@ class CollectViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
-
         if user.is_staff:
             return Collect.objects.all()
         
-        return Collect.objects.filter(customer_id__user = user)
+        customer = Customer.objects.filter(user = user).first()
+        if not customer:
+            return Collect.objects.none()
+        
+
+        customer_collects = Collect.objects.filter(customer_id = customer)
+        if not customer_collects:
+            return Collect.objects.none()
+        
+        return customer_collects

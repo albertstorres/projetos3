@@ -18,6 +18,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_spectacular',
 
     'accounts',
     'administrators',
@@ -26,6 +27,8 @@ INSTALLED_APPS = [
     'customers',
     'orders',
     'products',
+
+
 ]
 
 MIDDLEWARE = [
@@ -100,4 +103,12 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_FILTER_BACKENDS': ['dj_rql.drf.RQLFilterBackend'],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Verde Novo API',
+    'DESCRIPTION': 'API do Verde Novo',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': 'FALSE',
 }

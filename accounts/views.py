@@ -28,7 +28,7 @@ class DepositViewSet(viewsets.ModelViewSet):
         if not customer:
             return Deposit.objects.none()
 
-        account_customer = Account.objects.filter(customer_id=customer).first()
+        account_customer = Account.objects.filter(customer_id=customer)
         if not account_customer:
             return Deposit.objects.none()
         
