@@ -65,7 +65,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db_verde_novo',
         'USER': 'postgres',
-        'PASSWORD': 'tininhoedopapai',
+        'PASSWORD': 'abc12345',
         'HOST': 'localhost',
         'PORT': 5432,
     }
