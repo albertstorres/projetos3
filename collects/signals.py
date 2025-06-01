@@ -2,16 +2,17 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from collects.models import Collect, Categorie
 from accounts.models import Deposit
+from collects.services import calculate_deposit
 
 @receiver(post_save, sender = Collect)
 def creat_deposit(sender, instance, created, **kwargs):
     if created:
         try:
             categorie = Categorie.objects.get(id=instance.categorie_id.id)
-            total = instance.weight * categorie.price
+            total = calculate_deposit(instance.weight, categorie.price, categorie.bonus)
             account = instance.customer_id.accounts.first()
 
-            if account:    
+            if account:
                 Deposit.objects.create(
                 collect_id = instance,
                 account_id = account,

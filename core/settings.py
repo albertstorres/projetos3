@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_spectacular',
+    'corsheaders',
 
     'accounts',
     'administrators',
@@ -32,6 +33,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,7 +68,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db_verde_novo',
         'USER': 'postgres',
-        'PASSWORD': 'abc12345',
+        'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -112,3 +115,9 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': 'FALSE',
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True

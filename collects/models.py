@@ -48,6 +48,11 @@ class Categorie(models.Model):
     price = models.IntegerField(
         verbose_name = 'Preço',
     )
+    bonus = models.IntegerField(
+        verbose_name = 'Fator de Bonificação',
+        null = True,
+        blank = True,
+    )
 
 
     class Meta:
