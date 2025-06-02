@@ -5,7 +5,8 @@ from accounts.serializers import AccountSerializer, DepositSerializer
 from core.permissions import IsAccountOwner
 from accounts.filters import AccountFilterClass, DepositFilterClass
 from customers.models import Customer
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
@@ -32,4 +33,23 @@ class DepositViewSet(viewsets.ModelViewSet):
         if not account_customer:
             return Deposit.objects.none()
         
-        return Deposit.objects.filter(account_id=account_customer)
+        return Deposit.objects.filter(account_id__in=account_customer)
+
+class GetBalanceView(APIView):
+    permission_classes = [IsAccountOwner]
+
+    def get(self, request):
+        user = request.user
+
+        if user.is_staff:
+            return Response({"detail": "Staff users don't have personal account balances."}, status=400)
+
+        customer = Customer.objects.filter(user=user).first()
+        if not customer:
+            return Response({"balance": 0.00})
+
+        account = Account.objects.filter(customer_id=customer).first()
+        if not account:
+            return Response({"balance": 0.00})
+
+        return Response({"balance": account.balance})

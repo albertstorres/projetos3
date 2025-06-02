@@ -32,7 +32,7 @@ class AddressViewSet(viewsets.ModelViewSet):
 class CategorieViewSet(viewsets.ModelViewSet):
     queryset = Categorie.objects.all()
     serializer_class = CategorieSerializer
-    permission_classes = [DjangoModelPermissions, IsAdminUser] #REVISAR! cliente não deve conseguir fazer um GET
+    permission_classes = [DjangoModelPermissions] #REVISAR! cliente não deve conseguir fazer um GET
     rql_filter_class = CategorieFilterClass
 
 
